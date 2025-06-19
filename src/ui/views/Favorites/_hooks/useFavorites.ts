@@ -10,7 +10,11 @@ export const useFavorites = () => {
   )
 
   const updatePokemon = (updatedPokemon: Pokemon) => {
-    const updatedPokemons = data?.map((pokemon) =>
+    if (!data) {
+      return
+    }
+
+    const updatedPokemons = data.map((pokemon) =>
       pokemon.id === updatedPokemon.id ? updatedPokemon : pokemon
     )
 
