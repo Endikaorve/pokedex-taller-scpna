@@ -8,17 +8,12 @@ import { Main } from '@/ui/components/Main'
 import styles from './Favorites.module.css'
 
 export const Favorites: FC = () => {
-  const { pokemons, hasError, mutate } = useFavorites()
+  const { pokemons, hasError, updatePokemon } = useFavorites()
   const [showAnalysis, setShowAnalysis] = useState(false)
 
   const handleFavoriteToggle = (pokemon: Pokemon) => {
     const updatedPokemon = pokemonService.toggleFavorite(pokemon)
-
-    const updatedPokemons = pokemons?.map((pokemon) =>
-      pokemon.id === updatedPokemon.id ? updatedPokemon : pokemon
-    )
-
-    mutate(updatedPokemons)
+    updatePokemon(updatedPokemon)
   }
 
   const handleAnalyzeTeam = () => {
